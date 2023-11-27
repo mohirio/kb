@@ -1,0 +1,193 @@
+{
+    /*--------------------------- General Settings ---------------------------*/
+    "workbench.colorTheme": "Horizon Italic",
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.startupEditor": "newUntitledFile",
+    "workbench.list.smoothScrolling": true,
+    "workbench.tree.indent": 24,
+    "workbench.colorCustomizations": {
+      "editorWarning.foreground": "#ffc800",
+      "editorInfo.foreground": "#ffc800"
+    },
+
+    "editor.bracketPairColorization.enabled": false,
+    "editor.find.autoFindInSelection": "multiline",
+    "editor.fontFamily": "Hasklig, 'Courier New', monospace",
+    "editor.formatOnSave": false,
+    "editor.formatOnType": false,
+    "editor.largeFileOptimizations": false,
+    "editor.minimap.maxColumn": 80,
+    "editor.minimap.renderCharacters": false,
+    "editor.renderControlCharacters": true,
+    "editor.renderWhitespace": "none",
+    "editor.rulers": [80],
+    "editor.suggestSelection": "first",
+    "editor.trimAutoWhitespace": true,
+    "editor.tokenColorCustomizations": {
+      "textMateRules": [
+        {
+          "name": "Python Function Calls",
+          "scope": "meta.function-call.generic.python",
+          "settings": {
+            "foreground": "#25B0BCE6"
+          }
+        }
+      ]
+    },
+
+    "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 5000,
+    "files.trimTrailingWhitespace": true,
+
+    "breadcrumbs.enabled": false,
+
+    /*------------------------------- Terminal -------------------------------*/
+    "terminal.integrated.fontFamily": "SFMono Nerd Font",
+    "terminal.integrated.inheritEnv": false,
+    "python.terminal.activateEnvironment": false,
+    "python.languageServer": "Pylance",
+
+    /* Linting */
+    "flake8.severity": {
+      "E": "Error",
+      "F": "Warning",
+      "I": "Information",
+      "W": "Warning"
+    },
+    "flake8.args": [
+      "--max-line-length=120",
+      "--max-complexity=20",
+      "--ignore=E712, E251, W503, E203"
+    ],
+
+    "pylint.args": ["--disable-msg", "C0330"],
+
+    /* Formatting */
+    "black-formatter.args": ["--line-length", "80", "-S"],
+
+    /* ---------------------------- Highlighting ---------------------------- */
+    "highlight.regexes": {
+      /* Highlight Class names */
+      "(?<=class\\s)(\\w+)(\\(|\\:)": [
+        {
+          "overviewRulerColor": "#E95678E6",
+          "color": "#E95678",
+          "border": "1px solid #E9567811",
+          "borderRadius": "3px",
+          "background": "none !important",
+          "backgroundColor": "#E9567833 !important"
+        }
+      ],
+      /* Highlight function names */
+      "(?<=def\\s)(\\w+)": [
+        {
+          "overviewRulerColor": "#25b0bce6",
+          "color": "#25b0bc",
+          "border": "1px solid #25b0bc11",
+          "borderRadius": "3px",
+          "background": "none !important",
+          "backgroundColor": "#25b0bc33 !important"
+        }
+      ]
+    },
+
+    /* -------------------------------- LaTeX ------------------------------- */
+    "latex-workshop.view.pdf.viewer": "tab",
+    "latex-workshop.latex.autoBuild.interval": 10000,
+    "latex-workshop.latexindent.path": "/opt/homebrew/bin/latexindent",
+    "latex-workshop.latex.recipe.default": "xelatex ➞ bibtex ➞ xelatex`×2",
+    "latex-workshop.latex.build.clearLog.everyRecipeStep.enabled": false,
+    "latex-workshop.latex.tools": [
+      {
+        "name": "latexmk",
+        "command": "latexmk",
+        "args": [
+          "-synctex=1",
+          "-interaction=nonstopmode",
+          "-file-line-error",
+          "-pdf",
+          "-outdir=%OUTDIR%",
+          "%DOC%"
+        ],
+        "env": {}
+      },
+      {
+        "name": "xelatex",
+        "command": "xelatex",
+        "args": [
+          "-synctex=1",
+          "-interaction=halt-on-error",
+          "-nonstopmode",
+          "%DOC%"
+        ],
+        "env": {}
+      },
+      {
+        "name": "pdflatex",
+        "command": "pdflatex",
+        "args": [
+          "-synctex=1",
+          "-interaction=nonstopmode",
+          "-file-line-error",
+          "%DOC%"
+        ],
+        "env": {}
+      },
+      {
+        "name": "bibtex",
+        "command": "bibtex",
+        "args": ["%DOC%"],
+        "env": {}
+      }
+    ],
+
+    "latex-workshop.latex.recipes": [
+      {
+        "name": "pdfLaTeX",
+        "tools": ["pdflatex"]
+      },
+      {
+        "name": "latexmk 🔃",
+        "tools": ["latexmk"]
+      },
+      {
+        "name": "xelatex",
+        "tools": ["xelatex"]
+      },
+      {
+        "name": "pdflatex ➞ bibtex ➞ pdflatex`×2",
+        "tools": ["pdflatex", "bibtex", "pdflatex", "pdflatex"]
+      },
+      {
+        "name": "xelatex ➞ bibtex ➞ xelatex`×2",
+        "tools": ["xelatex", "bibtex", "xelatex", "xelatex"]
+      }
+    ],
+
+    /* ------------------------- Language Specific -------------------------- */
+    "[css]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[json]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[latex]": {
+      "editor.formatOnPaste": false,
+      "editor.formatOnSave": false,
+      "editor.suggestSelection": "recentlyUsedByPrefix",
+      "editor.defaultFormatter": "mathematic.vscode-latex"
+    },
+
+    "[javascript]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[html]": {
+      "editor.defaultFormatter": "vscode.html-language-features"
+    },
+    "[jsonc]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[markdown]": {
+      "editor.defaultFormatter": "yzhang.markdown-all-in-one",
+    }
+  }
