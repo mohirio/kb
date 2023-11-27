@@ -19,29 +19,13 @@ brew install --cask iterm2
 
 ## Shell
 
-### Why Apple switched to `zsh` instead of `bash`
-`bash` has been default shell for macOS up until Catalina, this version was left unchaged. The latest version of `bash` is v5 and was released in January 2019, however it was licensed  with GPL v3 which is the main reason why Apple made the change.
-
-`zsh` is released under a modified version of MIT license and that is the main reason why Apple moved to `zsh` as the default shell for macOS.
-
-To check which shell you are running now, use this command:
-```bash
-> ps -p $$
-
-  PID TTY          TIME CMD
-  336 pts/3    00:00:00 zsh
-```
-and to change your shell permenantly to `zsh`, use the following command:
-```bash
-chsh /bin/zsh
-```
-
 ### Oh My ZSH
 Oh My Zsh is an open-source framework for managing `zsh` configurations, plugins and themes. Out of the box, it provides additional information that a barebone `zsh` would not provide within your terminal to boost your productivity such as:
 - Current git branch
 - Git status
 - Current working directory
 - etc
+
 #### Installation
 ```bash
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -94,7 +78,7 @@ https://github.com/zsh-users/zsh-completions
   autoload -U compinit && compinit
   ```
 
---- 
+---
 ## Editor
 ### VS Code
 #### Installation
