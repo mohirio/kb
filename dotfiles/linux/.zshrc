@@ -2,8 +2,6 @@ export ZSH=/home/mohi/.oh-my-zsh
 export TERM=xterm-256color
 export HOMEBREW_NO_ANALYTICS=1
 
-ZSH_THEME="geometry/geometry"
-
 plugins=(
   docker
   git
@@ -13,43 +11,30 @@ plugins=(
   zsh-completions
 )
 
+ZSH_COMPDUMP="$HOME/.cache/zsh/.zcompdump-$HOST-$ZSH_VERSION"
+
+# Create parent directory if not exists
+[[ ! -d $HOME/.cache/zsh ]] && mkdir -p $HOME/.cache/zsh
+
 source $ZSH/oh-my-zsh.sh
 
-autoload -U compinit && compinit
+autoload -Uz zrecompile
+autoload -Uz compinit
+dump=$ZSH_COMPDUMP
 
-export LANG=en_US.UTF-8
-export LC_ALL=$LANG
-
-# geometry
-PROMPT_GEOMETRY_PRIMARY_SUFFIX=$'\n'
-PROMPT_GEOMETRY_PRIMARY_PREFIX=$'\n'
-GEOMETRY_PROMPT_PREFIX_SPACER=""
-GEOMETRY_COLOR_CONDA=green
-GEOMETRY_PROMPT_PATH='%~'
-GEOMETRY_GIT_SEPARATOR="⠶"
-
-setopt PROMPT_CR
-setopt PROMPT_SP
-export PROMPT_EOL_MARK=""
+# http://zsh.sourceforge.net/Doc/Release/Conditional-Expressions.html
+if [[ -s "$dump(#qN.mh+24)" && (! -s "$dump.zwc" || "$dump" -nt "$dump.zwc") ]]; then
+  compinit -i -d $ZSH_COMPDUMP
+  zrecompile $ZSH_COMPDUMP
+fi
+compinit -C -d $ZSH_COMPDUMP
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+typeset -A ZSH_HIGHLIGHT_STYLES
 ZSH_HIGHLIGHT_STYLES[path]=none
 ZSH_HIGHLIGHT_STYLES[path_prefix]=none
-
-# aliases ======================================================================
-alias lg1="git log --graph --abbrev-commit --decorate --pretty=oneline \
---format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) \
-%C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset) %C(dim white)\
-- %an%C(reset)%n''%C(white)%s%C(reset)' --all"
-alias lg2="git log --graph --abbrev-commit --decorate \
---format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) \
-%C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset) %C(dim white)\
-- %an%C(reset)%n''%C(white)%B%C(reset)' --all"
-alias lg3="git log --graph --abbrev-commit --decorate \
---format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) \
-%C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset) %C(dim white)\
-- %an%C(reset)%n''%C(white)%B%C(reset)'"
+ZSH_HIGHLIGHT_STYLES[cursor]="bg-blue"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -66,3 +51,8 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+# Aliases
+source ~/.aliases
+
+# Starship
+eval "$(starship init zsh)"

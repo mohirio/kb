@@ -15,9 +15,10 @@ plugins=(
   zsh-completions
 )
 
-# Create parent directory if not exists
-[[ ! -d "${ZSH_COMPDUMP:h}" ]] && mkdir -p "${ZSH_COMPDUMP:h}"
 ZSH_COMPDUMP="${$HOME}/.cache/zsh/.zcompdump-${SHORT_HOST}-${ZSH_VERSION}"
+
+# Create parent directory if not exists
+[[ ! -d $HOME/.cache/zsh ]] && mkdir -p $HOME/.cache/zsh
 
 source $ZSH/oh-my-zsh.sh
 
@@ -26,11 +27,11 @@ autoload -Uz compinit
 dump=$ZSH_COMPDUMP
 
 # http://zsh.sourceforge.net/Doc/Release/Conditional-Expressions.html
-if [[ -s $dump(#qN.mh+24) && (! -s "$dump.zwc" || "$dump" -nt "$dump.zwc")) ]]; then
-  zrecompile -i -d $ZSH_COMPDUMP
+if [[ -s "$dump(#qN.mh+24)" && (! -s "$dump.zwc" || "$dump" -nt "$dump.zwc") ]]; then
   compinit -i -d $ZSH_COMPDUMP
+  zrecompile $ZSH_COMPDUMP
 fi
-compinit -C
+compinit -C -d $ZSH_COMPDUMP
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
