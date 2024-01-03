@@ -7,7 +7,6 @@ export LC_ALL=$LANG
 plugins=(
   docker
   git
-  osx
   brew
   common-aliases
   zsh-autosuggestions
@@ -15,7 +14,7 @@ plugins=(
   zsh-completions
 )
 
-ZSH_COMPDUMP="${$HOME}/.cache/zsh/.zcompdump-${SHORT_HOST}-${ZSH_VERSION}"
+ZSH_COMPDUMP="${HOME}/.cache/zsh/.zcompdump-${SHORT_HOST}-${ZSH_VERSION}"
 
 # Create parent directory if not exists
 [[ ! -d $HOME/.cache/zsh ]] && mkdir -p $HOME/.cache/zsh
