@@ -50,6 +50,7 @@ plugins=(
 
 
 ### Extensions
+
 #### ZSH Autosuggestions
 https://github.com/zsh-users/zsh-autosuggestions
 - Installation
@@ -63,11 +64,12 @@ https://github.com/zsh-users/zsh-autosuggestions
       zsh-autosuggestions
   )
   ```
+
 #### ZSH Completions
 https://github.com/zsh-users/zsh-completions
 - Installation
   ```bash
-  git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/  plugins/zsh-completions
+  git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
   ```
 - Configuration, add this to your `~/.zshrc` file
   ```bash
@@ -76,6 +78,20 @@ https://github.com/zsh-users/zsh-completions
       zsh-completions
   )
   autoload -U compinit && compinit
+  ```
+
+#### ZSH Syntax Highlighting
+https://github.com/zsh-users/zsh-completions
+- Installation
+  ```bash
+  git clone https://github.com/zsh-users/zsh-syntax-highlighting ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+  ```
+- Configuration, add this to your `~/.zshrc` file
+  ```bash
+  plugins=(
+      # other plugins...
+      zsh-syntax-highlighting
+  )
   ```
 
 ---
